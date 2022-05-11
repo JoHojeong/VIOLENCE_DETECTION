@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 #ignore all files in meta_data
 meta_data/
+=======
+>>>>>>> 66ad22aac7a5db91c772596410191ae7c6fd5c11
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

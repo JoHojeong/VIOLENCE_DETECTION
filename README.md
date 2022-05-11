@@ -1,2 +1,2 @@
-# Violence-detection
-Violence detection model based on google-api
+# VIOLENCE_DETECTION
+VIOLENCE_DETECTION
