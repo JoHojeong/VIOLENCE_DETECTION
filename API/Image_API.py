@@ -2,7 +2,7 @@ import requests
 import json
 
 
-class API():
+class IMAGEAPI():
     def __init__(self):
         ...
 

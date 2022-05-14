@@ -10,13 +10,14 @@ class Dataloader():
         self.__total_frame = total_frame
         self.__API  = API
         self.__infos = []
+        self.read_video()
 
     def __getitem__(self,
                     idx):
         return self.__infos[idx]
 
 
-    def length(self):
+    def __len__(self):
         return len(self.__infos)
 
 

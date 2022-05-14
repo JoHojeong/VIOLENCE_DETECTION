@@ -1,8 +1,8 @@
-from API.API import API
+from API.Image_API import IMAGEAPI
 
 
 #  KakaoAPI infers adult images
-class KakaoAPI(API):
+class KakaoAPI(IMAGEAPI):
     def __init__(self,
                  meta_path: str = './meta_data/meatadata.json'):
         super.__init__()
