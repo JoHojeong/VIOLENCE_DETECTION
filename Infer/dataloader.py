@@ -1,15 +1,19 @@
+import os
+
 import cv2
-from API import API
+from API import IMAGEAPI
 
 class Dataloader():
     def __init__(self,
-                 API : API,
+                 API : IMAGEAPI,
                  vid_path : str,
-                 total_frame : int):
+                 total_frame : int,
+                 frames_path : str):
         self.__vid_path = vid_path
         self.__total_frame = total_frame
         self.__API  = API
         self.__infos = []
+        self.__frames_path = frames_path
         self.read_video()
 
     def __getitem__(self,
@@ -28,16 +32,17 @@ class Dataloader():
             print('Video not readable! Check if your vid is .mp4', e)
 
         self.__total_frame  = min(self.__total_frame, int(video.get(cv2.CAP_PROP_FRAME_COUNT)))
-        batch = int(video.get(cv2.CAP_PROP_FRAME_COUNT)) / self.__total_frame
+        batch = int(int(video.get(cv2.CAP_PROP_FRAME_COUNT)) / self.__total_frame)
 
         count = 0
         while True:
             ret, frame = video.read()
             if ret:
                 count += 1
-                
                 if count % batch == 0:
-                    self.__infos.append(self.__API.infer(frame))
+                    frame_path = os.path.join(self.__frames_path, f'{count}.jpg')
+                    cv2.imwrite(frame_path, frame)
+                    self.__infos.append(self.__API.infer(frame_path))
 
                 if cv2.waitKey(0) & 0xFF == ord('q'):
                     break

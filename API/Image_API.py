@@ -13,8 +13,7 @@ class IMAGEAPI():
     def send_requests(url: str,
                       headers: dict,
                       image):
-        # files = {'image': open(image, 'rb')}
-        files = {'image' : image}
+        files = {'image' : image }
 
         response = requests.post(
             url,
